@@ -1,21 +1,27 @@
 {
   "name": "tiku",
-  "version": "0.0.0",
-  "description": "A Express project",
+  "version": "0.0.1",
+  "description": "A Quiz App Backend",
   "author": "PeterZ",
   "main": "index.js",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./index.js"
   },
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
     "express": "~4.15.5",
+    "express-session": "^1.15.6",
     "morgan": "~1.9.0",
     "node-sass-middleware": "0.9.8",
+    "pm2": "^2.9.1",
     "serve-favicon": "~2.4.5"
   }
 }
