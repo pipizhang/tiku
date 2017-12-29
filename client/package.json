@@ -1,7 +1,7 @@
 {
   "name": "tiku",
-  "version": "1.0.0",
-  "description": "A Vue.js project",
+  "version": "0.0.1",
+  "description": "A Quiz App Frontend",
   "author": "PeterZ",
   "private": true,
   "scripts": {
