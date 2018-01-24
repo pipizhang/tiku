@@ -1,11 +1,9 @@
 'use strict';
 
 export default (sequelize, DataTypes) => {
-  let User = sequelize.define('User', {
-    username: DataTypes.STRING,
-    password: DataTypes.STRING,
-    salt: DataTypes.STRING,
-    email: DataTypes.STRING
+  let UserQuiz = sequelize.define('UserQuiz', {
+    userId: DataTypes.INTEGER,
+    isCompleted: DataTypes.BOOLEAN
   }, {
     classMethods: {
       associate: function(models) {
@@ -13,5 +11,5 @@ export default (sequelize, DataTypes) => {
       }
     }
   });
-  return User;
+  return UserQuiz;
 };

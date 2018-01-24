@@ -1,9 +1,10 @@
 'use strict';
 
 export default (sequelize, DataTypes) => {
-  let Choice = sequelize.define('Choice', {
-    questionId: DataTypes.STRING,
-    content: DataTypes.TEXT,
+  let UserAnswer = sequelize.define('UserAnswer', {
+    quizeId: DataTypes.INTEGER,
+    questionId: DataTypes.INTEGER,
+    choiceId: DataTypes.INTEGER,
     isCorrect: DataTypes.BOOLEAN
   }, {
     classMethods: {
@@ -12,5 +13,5 @@ export default (sequelize, DataTypes) => {
       }
     }
   });
-  return Choice;
+  return UserAnswer;
 };
