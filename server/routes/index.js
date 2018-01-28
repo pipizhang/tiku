@@ -14,5 +14,6 @@ export default app => {
   app.get('/quiz/:quiz_id(^\d+$)', QuizController.getInfoById);
   app.post('/quiz', QuizController.start);
   app.get('/quizzies', QuizController.list);
+  app.get('/quiz/status', QuizController.chcekStatus);
 
 }

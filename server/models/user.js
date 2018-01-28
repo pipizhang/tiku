@@ -10,7 +10,6 @@ export default (sequelize, DataTypes) => {
 
   User.associate = (models) => {
     User.hasMany(models.UserQuiz);
-    User.hasMany(models.UserAnswer, {throught: models.UserQuiz});
   };
   return User;
 };
