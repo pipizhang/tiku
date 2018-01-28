@@ -9,7 +9,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       content: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.TEXT
       },
       explanation: {
         type: Sequelize.TEXT

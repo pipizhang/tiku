@@ -9,9 +9,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       questionId: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       content: {
+        allowNull: false,
         type: Sequelize.TEXT
       },
       isCorrect: {
