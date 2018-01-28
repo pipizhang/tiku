@@ -1,24 +1,23 @@
-import express from 'express';
-import router from './routes/index.js';
+import express from 'express'
+import router from './routes/index.js'
+import config from 'config-lite'
+import cookieParser from 'cookie-parser'
+import session from './middlewares/session'
+import auth from './middlewares/auth'
+import cors from './middlewares/cors'
+import errorHandler from './middlewares/error-handler'
 
 const app = express();
+const cfg = config(__dirname);
 
-app.all('*', (req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-  res.header("X-Powered-By", 'TIKU');
-
-  if (res.method == 'OPTION') {
-    res.send(200);
-  } else {
-    next();
-  }
-});
-
+app.use(cors);
+app.use(cookieParser());
+app.use(session(cfg));
+app.use(auth);
 router(app);
+app.use(errorHandler);
 
-app.listen(3000, () => {
-  console.log("app listening on port 3000");
+app.listen(cfg.port, () => {
+  console.log("app listening on port ".concat(cfg.port));
 });
 
