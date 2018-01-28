@@ -6,10 +6,6 @@ class BaseController {
 
   }
 
-  async ping(req, res, next) {
-    res.send("pong")
-  }
-
   resSuccess(res, data, message) {
     data = data || null;
     message = message || "";

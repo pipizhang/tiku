@@ -8,7 +8,7 @@ export default (sequelize, DataTypes) => {
   });
 
   Choice.associate = (models) => {
-    Choice.belongsTo(models.Question);
+    Choice.belongsTo(models.Question, {foreignKey: 'questionId'});
   };
 
   return Choice;

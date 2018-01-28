@@ -1,19 +1,18 @@
 'use strict';
 
-import HomeController from '../controller/home'
 import AccountController from '../controller/account'
-import QuizController from '../controller/quiz'
+import QuestionController from '../controller/question'
 
 export default app => {
 
-  app.get('/', HomeController.index);
+  app.get('/', (req, res, next) => {
+    res.send("It works");
+  });
 
   app.post('/login', AccountController.login);
   app.get('/logout', AccountController.logout);
-
-  app.get('/quiz/:quiz_id(^\d+$)', QuizController.getInfoById);
-  app.post('/quiz', QuizController.start);
-  app.get('/quizzies', QuizController.list);
-  app.get('/quiz/status', QuizController.chcekStatus);
+  app.get('/question/pick', QuestionController.pick);
+  app.get('/questions/:question_id', QuestionController.getById);
+  app.post('/questions/:question_id', QuestionController.answer);
 
 }

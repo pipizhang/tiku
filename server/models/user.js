@@ -9,7 +9,7 @@ export default (sequelize, DataTypes) => {
   });
 
   User.associate = (models) => {
-    User.hasMany(models.UserQuiz);
+    User.hasMany(models.UserQuestion);
   };
   return User;
 };
