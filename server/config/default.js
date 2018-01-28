@@ -2,10 +2,6 @@
 
 module.exports = {
   port: 4000,
-  db: {
-    dialect: 'sqlite',
-    storage: 'data/main.db'
-  },
   session: {
     name: 'SID',
     secret: 'SID',
