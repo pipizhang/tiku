@@ -6,9 +6,9 @@ class HomeController {
 
     }
 
-    aysnc index(req, res, next) {
+    async index(req, res, next) {
         res.send("It works!");
     }
 }
 
-export default new HomeController();
+export default new HomeController;
