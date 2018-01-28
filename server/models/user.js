@@ -2,16 +2,15 @@
 
 export default (sequelize, DataTypes) => {
   let User = sequelize.define('User', {
-    username: DataTypes.STRING,
-    password: DataTypes.STRING,
-    salt: DataTypes.STRING,
-    email: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
+    username: {type: DataTypes.STRING, allowNull: false},
+    password: {type: DataTypes.STRING, allowNull: false},
+    salt: {type: DataTypes.STRING, allowNull: false},
+    email: {type: DataTypes.STRING, allowNull: false}
   });
+
+  User.associate = (models) => {
+    User.hasMany(models.UserQuiz);
+    User.hasMany(models.UserAnswer, {throught: models.UserQuiz});
+  };
   return User;
 };

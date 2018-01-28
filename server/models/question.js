@@ -2,16 +2,14 @@
 
 export default (sequelize, DataTypes) => {
   let Question = sequelize.define('Question', {
-    content: DataTypes.STRING,
+    content: {type: DataTypes.TEXT, allowNull: false},
     explanation: DataTypes.TEXT,
     image: DataTypes.STRING,
     category: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
+
+  Question.associate = (models) => {
+    models.Question.hasMany(models.Choice);
+  };
   return Question;
 };
