@@ -48,9 +48,33 @@ class QuestionController extends BaseController {
       }
 
       let { choiceId = 0} = fields;
-      let n = await models.Choice.count({where: {questionId: questionId, choiceId: choiceId, isCorrect: true}});
+      let isCorrect = await models.Choice.count({where: {questionId: questionId, choiceId: choiceId, isCorrect: true}});
+      let isOld =  models.UserQuestion.count(where: {userId: req.session.user.id, questionId: questionId});
 
-      super.resSuccess(res, null, "logged in");
+      if (isOld > 0) {
+        if (isCorrect > 0) {
+          await models.sequelize.query(
+            "Update UserQuestions SET correct=correct+1, updatedAt=? WHERE userId=? and questionsId=?",
+            {replacements: [Date.now(), req.session.user.id, questionId]}
+          );
+        } else {
+          await models.sequelize.query(
+            "Update UserQuestions SET incorrect=incorrect+1, updatedAt=? WHERE userId=? and questionsId=?",
+            {replacements: [Date.now(), req.session.user.id, questionId]}
+          );
+        }
+      } else {
+        await models.UserQuestion.create({
+          userId: req.session.user.id,
+          questionId: questionId,
+          correct: isCorrect > 0 ? 1 : 0,
+          incorrect: isCorrect > 0 ? 0 : 1,
+          createdAt: Date.now(),
+          updatedAt: Date.now()
+        });
+      }
+
+      super.resSuccess(res, null, "");
     });
   }
 
